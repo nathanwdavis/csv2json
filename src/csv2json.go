@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"encoding/csv"
 	"encoding/json"
 	"flag"
@@ -91,7 +92,7 @@ func getJsonWriter(fName string) (*json.Encoder, *os.File) {
 	if err != nil {
 		panic("Could not open output JSON file: " + err.Error())
 	}
-	return json.NewEncoder(fw), fw
+	return json.NewEncoder(bufio.NewWriter(fw)), fw
 }
 
 func buildRecord(line, fields []string,
