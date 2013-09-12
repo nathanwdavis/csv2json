@@ -10,7 +10,7 @@ import (
 	"os"
 	"strconv"
 
-	"./typeguessing"
+	"csv2json/typeguessing"
 )
 
 func main() {
@@ -123,9 +123,6 @@ func buildRecord(line, fields []string,
 		default:
 			typedv = line[idx]
 		}
-		// if err != nil {
-		// 	panic("Field in line did not match inferreded type.")
-		// }
 		data[field] = typedv
 	}
 	return data
@@ -146,7 +143,6 @@ func inferTypes(csv *csv.Reader, fields []string,
 	for i := 0; i < numLines; i++ {
 		line, err := csv.Read()
 		if err == io.EOF {
-			//numLines = i
 			break
 		} else if err != nil {
 			panic(err)
